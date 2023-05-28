@@ -1,0 +1,36 @@
+@prefix : <#> .
+@prefix arx: <http://www.arx-machina.com/> .
+
+:theShire a arx:Location ;
+    arx:name "The Shire"@en ;
+    arx:description "A region in Middle Earth."@en ;
+    arx:locationType arx:Region .
+
+:hobbiton a arx:Location ;
+    arx:name "Hobbiton"@en ;
+    arx:description "A town in The Shire."@en ;
+    arx:withinLocation :theShire ;
+    arx:locationType arx:Town .
+
+:bagEnd a arx:Location ;
+    arx:name "Bag End"@en ;
+    arx:description "A town in The Shire."@en ;
+    arx:locationType arx:Building .
+
+:bilbo a arx:Character ;
+    arx:name "Bilbo Baggins"@en ;
+    arx:description "A Hobbit of the Shire and owner of bag-end. Former owner of the One Ring." ;
+    arx:home :bagEnd ;
+    arx:familyOf :frodo ;
+    arx:gender arx:Male .
+
+:frodo a arx:Character ;
+    arx:name "Frodo Baggins"@en ;
+    arx:description "A Hobbit of the Shire and future bearer of the One Ring." ;
+    arx:home :bagEnd ;
+    arx:familyOf :bilbo ;
+    arx:gender arx:Male .
+
+:cavetroll a arx:Creature ;
+    arx:name "Cave Troll"@en ;
+    arx:description "A ferocious cave troll!"@en .

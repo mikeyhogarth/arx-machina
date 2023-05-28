@@ -1,0 +1,20 @@
+@prefix arx: <http://www.arx-machina.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+arx:Idea a rdfs:Class;
+    rdfs:label "Idea"@en ;
+    rdfs:comment "An idea for a thing, such as a creature or a location."@en .
+
+arx:name a rdf:Property; 
+    rdfs:label "Name"@en; 
+    rdfs:comment "The name of the idea, e.g. the location name or the character name."@en ;
+    rdfs:domain arx:Idea ; 
+    rdfs:range xsd:string .
+
+arx:name a rdf:Property; 
+    rdfs:label "Description"@en;
+    rdfs:comment "A brief description / flavour of the idea." @en ; 
+    rdfs:domain arx:Idea ; 
+    rdfs:range xsd:string .

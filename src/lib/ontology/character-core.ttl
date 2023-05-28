@@ -1,0 +1,38 @@
+@prefix arx: <http://www.arx-machina.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+arx:Character rdfs:subClassOf arx:Idea .
+
+# Gender
+arx:Male a arx:Gender .
+arx:Female a arx:Gender .
+
+arx:gender a rdf:Property ; 
+    rdfs:label "Gender"@en ;
+    rdfs:domain arx:Character ; 
+    rdfs:range arx:Gender .
+
+arx:home a rdf:Property ;
+    rdfs:label "Home"@en ;
+    rdfs:comment "A place this character calls home"@en ;
+    rdfs:domain arx:Character ; 
+    rdfs:range arx:Location .
+
+arx:familyOf a rdf:Property ;
+    rdfs:label "Family"@en ;
+    rdfs:comment "Characters related by family."@en ;
+    rdfs:domain arx:Character ; 
+    rdfs:range arx:Location .
+
+arx:friendOf a rdf:Property ;
+    rdfs:label "Friend"@en ;
+    rdfs:comment "Characters related by friendship."@en ;
+    rdfs:domain arx:Character ; 
+    rdfs:range arx:Location .
+
+arx:enemyOf a rdf:Property ;
+    rdfs:label "Enemy"@en ;
+    rdfs:comment "Characters are enemies."@en ;
+    rdfs:domain arx:Character ; 
+    rdfs:range arx:Location .

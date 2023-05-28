@@ -1,0 +1,31 @@
+@prefix arx: <http://www.arx-machina.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+arx:Location rdfs:subClassOf arx:Idea .
+
+# Location Types
+arx:LocationType a rdfs:Class .
+arx:Mountain rdfs:subClassOf arx:LocationType .
+arx:Desert rdfs:subClassOf arx:LocationType .
+arx:Region rdfs:subClassOf arx:LocationType .
+arx:City rdfs:subClassOf arx:LocationType .
+arx:Town rdfs:subClassOf arx:LocationType .
+arx:Building rdfs:subClassOf arx:LocationType .
+arx:Dungeon rdfs:subClassOf arx:LocationType .
+
+# Location Properties
+arx:locationType a rdf:Property;
+    rdfs:label "Location Type"@en ;
+    rdfs:domain arx:Location ;
+    rdfs:range arx:LocationType .
+
+arx:withinLocation a rdf:Property;
+    rdfs:label "Within"@en ;
+    rdfs:domain arx:Location ;
+    rdfs:range arx:Location .
+
+arx:adjacentTo a rdf:Property;
+    rdfs:label "Adjacent to"@en ;
+    rdfs:domain arx:Location ;
+    rdfs:range arx:Location .
