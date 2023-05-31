@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { Heading } from '$lib/components';
-	import visionStore from '$lib/stores/visions.store';
+	import packageStore from '$lib/stores/packages.store';
 
 	let href: string;
-	function addVision() {
-		visionStore.addVision(href);
+	function addPackage() {
+		packageStore.addPackage(href);
 		href = '';
 	}
 </script>
 
-<Heading text="Visions" />
+<Heading text="Packages" />
 
-<form on:submit={addVision}>
+<form on:submit={addPackage}>
 	<label for="href">Href</label>
 	<input
 		type="text"
@@ -23,7 +23,7 @@
 </form>
 
 <ul>
-	{#each $visionStore as { href }}
-		<li>{href} <button on:click={() => visionStore.removeVision(href)}>remove</button></li>
+	{#each $packageStore as { href }}
+		<li>{href} <button on:click={() => packageStore.removePackage(href)}>remove</button></li>
 	{/each}
 </ul>

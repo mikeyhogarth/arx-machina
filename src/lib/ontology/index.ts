@@ -13,12 +13,10 @@ const parser = new Parser();
 
 function createCoreOntology() {
 	const store = new Store();
-	console.log(coreOntology);
 	parser.parse(coreOntology, (error, quad) => {
 		if (error) console.error(error);
 		if (quad) store.addQuad(quad.subject, quad.predicate, quad.object, new NamedNode('#ontology'));
 	});
-
 	return { store };
 }
 

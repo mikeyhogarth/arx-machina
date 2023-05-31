@@ -1,5 +1,6 @@
 @prefix : <#> .
 @prefix arx: <http://www.arx-machina.com/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :theShire a arx:Location ;
     arx:name "The Shire"@en ;

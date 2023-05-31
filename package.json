@@ -1,6 +1,7 @@
 {
 	"name": "arx-machina",
-	"version": "0.0.1",
+	"version": "0.0.0",
+	"license": "GPL-3.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

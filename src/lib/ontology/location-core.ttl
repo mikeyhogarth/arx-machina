@@ -6,17 +6,17 @@ arx:Location rdfs:subClassOf arx:Idea .
 
 # Location Types
 arx:LocationType a rdfs:Class .
-arx:Mountain rdfs:subClassOf arx:LocationType .
+arx:Mountain rdfs:subClassOf arx:LocationType; rdfs:label "Mountain"@en .
 arx:Desert rdfs:subClassOf arx:LocationType .
 arx:Region rdfs:subClassOf arx:LocationType .
 arx:City rdfs:subClassOf arx:LocationType .
 arx:Town rdfs:subClassOf arx:LocationType .
-arx:Building rdfs:subClassOf arx:LocationType .
+arx:Building rdfs:subClassOf arx:LocationType; rdfs:label "Building"@en .
 arx:Dungeon rdfs:subClassOf arx:LocationType .
 
 # Location Properties
 arx:locationType a rdf:Property;
-    rdfs:label "Location Type"@en ;
+    rdfs:label  "Location Type"@en ;
     rdfs:domain arx:Location ;
     rdfs:range arx:LocationType .
 
