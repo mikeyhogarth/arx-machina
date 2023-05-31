@@ -11,7 +11,7 @@
 	];
 </script>
 
-<nav class="py-2 my-2 px-6 border-y border-red-600">
+<nav class="py-2 mt-2 mb-4 px-6 border-y-8 border-double border-red-600">
 	<ul>
 		{#each navItems as { title, href }}
 			<li class="inline-block mr-4"><a {href}>{title}</a></li>

@@ -6,6 +6,6 @@
 	export let value: NamedNode;
 </script>
 
-<Link href={`/locations/detail?iri=${encodeURIComponent(value.value)}`}>
+<Link href={`/locations/${encodeURIComponent(value.value)}`}>
 	<IRI {value} />
 </Link>

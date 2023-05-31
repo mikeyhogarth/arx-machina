@@ -2,9 +2,21 @@
 @prefix arx: <http://www.arx-machina.com/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
+:arda a arx:Location ;
+    arx:name "Arda" ;
+    arx:description "The world in which all peoples of Middle-earth and of Valinor live."@en ;
+    arx:locationType arx:World .
+
+:middleEarth a arx:Location ;
+    arx:name "Middle Earth" ;
+    arx:description "The main continent of Earth Arda"@en ;
+    arx:withinLocation :arda ;
+    arx:locationType arx:Continent .
+
 :theShire a arx:Location ;
     arx:name "The Shire"@en ;
     arx:description "A region in Middle Earth."@en ;
+    arx:withinLocation :middleEarth ;
     arx:locationType arx:Region .
 
 :hobbiton a arx:Location ;
@@ -15,7 +27,8 @@
 
 :bagEnd a arx:Location ;
     arx:name "Bag End"@en ;
-    arx:description "A town in The Shire."@en ;
+    arx:description "A hole in the ground."@en ;
+    arx:withinLocation :hobbiton .
     arx:locationType arx:Building .
 
 :bilbo a arx:Character ;

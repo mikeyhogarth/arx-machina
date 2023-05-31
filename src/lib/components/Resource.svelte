@@ -4,7 +4,6 @@
 
 	export let value: Term;
 	export let link = true;
-	console.log(value);
 </script>
 
 {#if value.termType == 'NamedNode'}

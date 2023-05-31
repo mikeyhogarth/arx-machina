@@ -4,8 +4,8 @@ import { error } from '@sveltejs/kit';
 
 const { namedNode } = DataFactory;
 
-export const load = (({ url }) => {
-	const iri = url.searchParams.get('iri');
+export const load = (({ params }) => {
+	const iri = params.iri;
 	if (iri) {
 		return {
 			iri: namedNode(iri)
