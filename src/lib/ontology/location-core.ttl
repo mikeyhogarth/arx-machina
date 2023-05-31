@@ -2,17 +2,17 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-arx:Location rdfs:subClassOf arx:Idea .
+arx:Location rdfs:subClassOf arx:Idea; rdfs:label "Location"@en .
 
 # Location Types
 arx:LocationType a rdfs:Class .
 arx:Mountain rdfs:subClassOf arx:LocationType; rdfs:label "Mountain"@en .
-arx:Desert rdfs:subClassOf arx:LocationType .
-arx:Region rdfs:subClassOf arx:LocationType .
-arx:City rdfs:subClassOf arx:LocationType .
-arx:Town rdfs:subClassOf arx:LocationType .
+arx:Desert rdfs:subClassOf arx:LocationType; rdfs:label "Desert"@en .
+arx:Region rdfs:subClassOf arx:LocationType; rdfs:label "Region"@en .
+arx:City rdfs:subClassOf arx:LocationType; rdfs:label "City"@en .
+arx:Town rdfs:subClassOf arx:LocationType; rdfs:label "Town"@en .
 arx:Building rdfs:subClassOf arx:LocationType; rdfs:label "Building"@en .
-arx:Dungeon rdfs:subClassOf arx:LocationType .
+arx:Dungeon rdfs:subClassOf arx:LocationType; rdfs:label "Dungeon"@en .
 
 # Location Properties
 arx:locationType a rdf:Property;
@@ -21,7 +21,7 @@ arx:locationType a rdf:Property;
     rdfs:range arx:LocationType .
 
 arx:withinLocation a rdf:Property;
-    rdfs:label "Within"@en ;
+    rdfs:label "Located Within"@en ;
     rdfs:domain arx:Location ;
     rdfs:range arx:Location .
 

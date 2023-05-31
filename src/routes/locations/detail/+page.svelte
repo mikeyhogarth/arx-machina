@@ -22,7 +22,7 @@
 <Heading text={name.value} />
 <p>{description.value}</p>
 <p>
-	Types: {#each types as type}{type.value}{/each}
+	Types: {#each types as type}<Resource value={type} />{/each}
 </p>
 
 <Heading text="Properties" el="h3" />
@@ -36,7 +36,7 @@
 	<tbody>
 		{#each properties as property}
 			<tr>
-				<td><Resource resource={property.predicate} /></td>
+				<td><Resource value={property.predicate} /></td>
 				<td><ResourceProperty resource={property.subject} property={property.predicate} /></td>
 			</tr>
 		{/each}

@@ -9,5 +9,5 @@
 </script>
 
 {#each values as value}
-	<Resource resource={value} />
+	<Resource {value} />
 {/each}

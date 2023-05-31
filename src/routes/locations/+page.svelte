@@ -17,7 +17,7 @@
 	</thead>
 	{#each locations as location}
 		<tr>
-			<td><Resource resource={location} /></td>
+			<td><Resource value={location} /></td>
 			<td><ResourceProperty resource={location} property={ARX.description} /></td>
 		</tr>
 	{/each}
