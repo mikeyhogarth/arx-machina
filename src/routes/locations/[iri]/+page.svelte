@@ -5,20 +5,24 @@
 	import ARX from '$lib/nodes/arx';
 	import RDF from '$lib/nodes/rdf';
 
+	import { getName } from '$lib/util/n3Util';
+
 	export let data: PageData;
 	$: iri = data.iri;
 
 	// Details
-	$: name = $store.getObjects(iri, ARX.name, null)[0]?.value;
+	$: name = getName($store, iri);
+
+	// Should the rest of these be abstracted away like the name is?
 	$: description = $store.getObjects(iri, ARX.description, null)[0]?.value;
 	$: types = $store.getObjects(iri, RDF.type, null);
-
-	// Rest of properties
 	$: properties = $store.getQuads(iri, null, null, null);
 </script>
 
 <Heading text={name} />
-<p>{description}</p>
+{#if description}
+	<p>{description}</p>
+{/if}
 <p>
 	{#each types as type}<Resource value={type} />{/each}
 </p>

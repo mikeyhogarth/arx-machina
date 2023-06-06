@@ -20,3 +20,5 @@ arx:description a rdf:Property;
     rdfs:comment "A brief description / flavour of the idea." @en ; 
     rdfs:domain arx:Idea ; 
     rdfs:range xsd:string .
+
+
