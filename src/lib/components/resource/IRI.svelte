@@ -1,15 +1,14 @@
 <script lang="ts">
 	import type { NamedNode } from 'n3';
-	import { store as example } from '$lib/example';
-	import { store as ontology } from '$lib/ontology';
+	import store from '$lib/n3Store';
 	import ARX from '$lib/nodes/arx';
 	import RDFS from '$lib/nodes/rdfs';
 	export let value: NamedNode;
 
 	// Name can come from rdfs:label or arx:name
-	const name = [
-		...example.getObjects(value, ARX.name, null),
-		...ontology.getObjects(value, RDFS.label, null)
+	$: name = [
+		...$store.getObjects(value, ARX.name, null),
+		...$store.getObjects(value, RDFS.label, null)
 	];
 </script>
 

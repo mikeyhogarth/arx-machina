@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Heading, Resource, ResourceProperty } from '$lib/components';
-	import type { Term } from 'n3';
 	import type { PageData } from './$types';
-	import { store as example } from '$lib/example';
+	import store from '$lib/n3Store';
 	import ARX from '$lib/nodes/arx';
 	import RDF from '$lib/nodes/rdf';
 
@@ -10,12 +9,12 @@
 	$: iri = data.iri;
 
 	// Details
-	$: name = example.getObjects(iri, ARX.name, null)[0]?.value;
-	$: description = example.getObjects(iri, ARX.description, null)[0]?.value;
-	$: types = example.getObjects(iri, RDF.type, null);
+	$: name = $store.getObjects(iri, ARX.name, null)[0]?.value;
+	$: description = $store.getObjects(iri, ARX.description, null)[0]?.value;
+	$: types = $store.getObjects(iri, RDF.type, null);
 
 	// Rest of properties
-	$: properties = example.getQuads(iri, null, null, null);
+	$: properties = $store.getQuads(iri, null, null, null);
 </script>
 
 <Heading text={name} />

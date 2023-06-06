@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Heading, Resource, ResourceProperty } from '$lib/components';
-	import { store as example } from '$lib/example';
+	import store from '$lib/n3Store';
 	import ARX from '$lib/nodes/arx';
 	import RDF from '$lib/nodes/rdf';
 
-	const locations = example.getSubjects(RDF.type, ARX.Location, null);
+	$: locations = $store.getSubjects(RDF.type, ARX.Location, null);
 </script>
 
 <Heading text="Locations" />
