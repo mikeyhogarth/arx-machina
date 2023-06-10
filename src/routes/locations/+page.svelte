@@ -3,6 +3,7 @@
 	import store from '$lib/n3Store';
 	import ARX from '$lib/nodes/arx';
 	import RDF from '$lib/nodes/rdf';
+	import RDFS from '$lib/nodes/rdfs';
 
 	$: locations = $store.getSubjects(RDF.type, ARX.Location, null);
 </script>
@@ -18,7 +19,7 @@
 	{#each locations as location}
 		<tr>
 			<td><Resource value={location} /></td>
-			<td><ResourceProperty resource={location} property={ARX.description} /></td>
+			<td><ResourceProperty resource={location} property={RDFS.comment} /></td>
 		</tr>
 	{/each}
 </table>

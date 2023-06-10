@@ -1,17 +1,19 @@
 <script lang="ts">
 	import type { NamedNode } from 'n3';
-	import store from '$lib/n3Store';
-	import ARX from '$lib/nodes/arx';
-	import RDFS from '$lib/nodes/rdfs';
 	import { getName } from '$lib/util/n3Util';
+	import { Link } from '$lib/components';
+	import store from '$lib/n3Store';
 
 	export let value: NamedNode;
+	export let link = false;
 
-	// Name can come from rdfs:label or arx:name
-	$: name = [
-		...$store.getObjects(value, ARX.name, null),
-		...$store.getObjects(value, RDFS.label, null)
-	];
+	$: name = getName($store, value);
 </script>
 
-{name[0]?.value || value.value}
+{#if link}
+	<Link href={`/locations/${encodeURIComponent(value.value)}`}>
+		{name}
+	</Link>
+{:else}
+	{name}
+{/if}

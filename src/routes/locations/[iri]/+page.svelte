@@ -2,7 +2,7 @@
 	import { Heading, Resource, ResourceProperty } from '$lib/components';
 	import type { PageData } from './$types';
 	import store from '$lib/n3Store';
-	import ARX from '$lib/nodes/arx';
+	import RDFS from '$lib/nodes/rdfs';
 	import RDF from '$lib/nodes/rdf';
 
 	import { getName } from '$lib/util/n3Util';
@@ -14,7 +14,7 @@
 	$: name = getName($store, iri);
 
 	// Should the rest of these be abstracted away like the name is?
-	$: description = $store.getObjects(iri, ARX.description, null)[0]?.value;
+	$: description = $store.getObjects(iri, RDFS.comment, null)[0]?.value;
 	$: types = $store.getObjects(iri, RDF.type, null);
 	$: properties = $store.getQuads(iri, null, null, null);
 </script>

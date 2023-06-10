@@ -9,16 +9,8 @@ arx:Idea a rdfs:Class;
     rdfs:label "Idea"@en ;
     rdfs:comment "An idea for a thing, such as a creature or a location."@en .
 
-arx:name a rdf:Property; 
-    rdfs:label "Name"@en; 
-    rdfs:comment "The name of the idea, e.g. the location name or the character name."@en ;
-    rdfs:domain arx:Idea ; 
-    rdfs:range xsd:string .
-
-arx:description a rdf:Property; 
-    rdfs:label "Description"@en;
-    rdfs:comment "A brief description / flavour of the idea." @en ; 
-    rdfs:domain arx:Idea ; 
-    rdfs:range xsd:string .
-
-
+rdfs:label a rdf:Property; 
+    rdfs:label "Name"@en .
+    
+rdfs:comment a rdf:Property; 
+    rdfs:label "Description"@en .
