@@ -1,8 +1,9 @@
-import { Store, Parser, DataFactory } from 'n3';
+import { Store, Parser, DataFactory, NamedNode } from 'n3';
 import coreOntology from './ontology';
 import axios from 'axios';
 import type { DefaultGraph, Quad_Graph } from 'n3';
 import { writable } from 'svelte/store';
+import { getIdea, getName } from '$lib/util/storeQuery';
 
 const { namedNode, defaultGraph } = DataFactory;
 
@@ -29,7 +30,9 @@ function createN3Store() {
 				if (quad) store.addQuad(quad.subject, quad.predicate, quad.object, graph);
 				if (!quad) set(store);
 			});
-		}
+		},
+		getName: (iri: NamedNode) => getName(store, iri),
+		getIdea: (iri: NamedNode) => getIdea(store, iri)
 	};
 }
 

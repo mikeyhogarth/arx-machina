@@ -2,29 +2,20 @@
 	import { Heading, Resource, ResourceProperty } from '$lib/components';
 	import type { PageData } from './$types';
 	import store from '$lib/n3Store';
-	import RDFS from '$lib/nodes/rdfs';
-	import RDF from '$lib/nodes/rdf';
-
-	import { getName } from '$lib/util/n3Util';
 
 	export let data: PageData;
 	$: iri = data.iri;
 
-	// Details
-	$: name = getName($store, iri);
-
-	// Should the rest of these be abstracted away like the name is?
-	$: description = $store.getObjects(iri, RDFS.comment, null)[0]?.value;
-	$: types = $store.getObjects(iri, RDF.type, null);
-	$: properties = $store.getQuads(iri, null, null, null);
+	// State
+	$: idea = store.getIdea(iri);
 </script>
 
-<Heading text={name} />
-{#if description}
-	<p>{description}</p>
+<Heading text={idea.name} />
+{#if idea.description}
+	<p>{idea.description}</p>
 {/if}
 <p>
-	{#each types as type}<Resource value={type} />{/each}
+	{#each idea.types as type}<Resource value={type} />{/each}
 </p>
 
 <div class="mt-6">
@@ -37,7 +28,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each properties as property (property)}
+			{#each idea.otherProperties as property (property)}
 				<tr>
 					<td><Resource value={property.predicate} link={false} /></td>
 					<td><ResourceProperty resource={property.subject} property={property.predicate} /></td>
