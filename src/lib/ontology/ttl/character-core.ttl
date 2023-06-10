@@ -2,11 +2,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-arx:Character rdfs:subClassOf arx:Idea .
+arx:Character rdfs:subClassOf arx:Idea; rdfs:label "Character"@en.
 
 # Gender
-arx:Male a arx:Gender .
-arx:Female a arx:Gender .
+arx:Gender a rdfs:Class; rdfs:label "Gender"@en . 
+arx:Male a arx:Gender; rdfs:label "Male"@en .
+arx:Female a arx:Gender; rdfs:label "Female"@en .
 
 arx:gender a rdf:Property ; 
     rdfs:label "Gender"@en ;

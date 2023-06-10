@@ -5,10 +5,11 @@
 	import RDF from '$lib/nodes/rdf';
 	import RDFS from '$lib/nodes/rdfs';
 
-	$: locations = $store.getSubjects(RDF.type, ARX.Location, null);
+	// Note currently only locations
+	$: ideas = store.getAllIdeas();
 </script>
 
-<Heading text="Locations" />
+<Heading text="Ideas" />
 <table class="w-full mt-10">
 	<thead class="border-b border-double border-black">
 		<tr>
@@ -16,10 +17,10 @@
 			<td>Description</td>
 		</tr>
 	</thead>
-	{#each locations as location}
+	{#each ideas as idea}
 		<tr>
-			<td><Resource value={location} /></td>
-			<td><ResourceProperty resource={location} property={RDFS.comment} /></td>
+			<td><Resource value={idea.iri} /></td>
+			<td>{idea.description}</td>
 		</tr>
 	{/each}
 </table>

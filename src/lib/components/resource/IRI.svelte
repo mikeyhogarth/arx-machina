@@ -10,7 +10,7 @@
 </script>
 
 {#if link}
-	<Link href={`/locations/${encodeURIComponent(value.value)}`}>
+	<Link href={`/ideas/${encodeURIComponent(value.value)}`}>
 		{name}
 	</Link>
 {:else}

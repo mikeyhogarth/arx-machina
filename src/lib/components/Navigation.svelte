@@ -1,8 +1,8 @@
 <script lang="ts">
 	const navItems: { title: string; href: string }[] = [
 		{
-			title: 'Locations',
-			href: '/locations'
+			title: 'Ideas',
+			href: '/ideas'
 		},
 		{
 			title: 'Packages',

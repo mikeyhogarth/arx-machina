@@ -6,5 +6,6 @@ const { namedNode } = DataFactory;
 // TODO: probably an easier way than this haha
 export default {
 	label: namedNode(ns + 'label'),
-	comment: namedNode(ns + 'comment')
+	comment: namedNode(ns + 'comment'),
+	subClassOf: namedNode(ns + 'subClassOf')
 };

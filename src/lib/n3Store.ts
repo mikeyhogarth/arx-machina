@@ -3,7 +3,7 @@ import coreOntology from './ontology';
 import axios from 'axios';
 import type { DefaultGraph, Quad_Graph } from 'n3';
 import { writable } from 'svelte/store';
-import { getIdea, getName } from '$lib/util/storeQuery';
+import { getIdea, getAllIdeas, getName } from '$lib/util/query';
 
 const { namedNode, defaultGraph } = DataFactory;
 
@@ -32,7 +32,8 @@ function createN3Store() {
 			});
 		},
 		getName: (iri: NamedNode) => getName(store, iri),
-		getIdea: (iri: NamedNode) => getIdea(store, iri)
+		getIdea: (iri: NamedNode) => getIdea(store, iri),
+		getAllIdeas: () => getAllIdeas(store)
 	};
 }
 
