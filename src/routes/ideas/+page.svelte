@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Heading, Resource, ResourceProperty } from '$lib/components';
 	import store from '$lib/n3Store';
+	import { getAllIdeas } from '$lib/util/query';
 
-	// Note currently only locations
-	$: ideas = store.getAllIdeas();
+	$: ideas = getAllIdeas($store);
 </script>
 
 <Heading text="Ideas" />

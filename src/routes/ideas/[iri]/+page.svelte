@@ -2,12 +2,13 @@
 	import { Heading, Resource, ResourceProperty } from '$lib/components';
 	import type { PageData } from './$types';
 	import store from '$lib/n3Store';
+	import { getIdea } from '$lib/util/query';
 
 	export let data: PageData;
 	$: iri = data.iri;
 
 	// State
-	$: idea = store.getIdea(iri);
+	$: idea = getIdea($store, iri);
 </script>
 
 <Heading text={idea.name} />

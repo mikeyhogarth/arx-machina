@@ -26,12 +26,12 @@ function createN3Store() {
 			parser.parse(document, (error, quad) => {
 				if (error) console.error(error);
 				if (quad) store.addQuad(quad.subject, quad.predicate, quad.object, graph);
-				if (!quad) set(store);
+				if (!quad) {
+					set(store);
+					console.log('Store updated', store.size);
+				}
 			});
-		},
-		getName: (iri: NamedNode) => getName(store, iri),
-		getIdea: (iri: NamedNode) => getIdea(store, iri),
-		getAllIdeas: () => getAllIdeas(store)
+		}
 	};
 }
 
