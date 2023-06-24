@@ -16,8 +16,28 @@ import RDF from '$lib/nodes/rdf';
 import RDFS from '$lib/nodes/rdfs';
 import ARX from '$lib/nodes/arx';
 
-export function getName(store: N3Store, iri: NamedNode) {
-	return [...store.getObjects(iri, RDFS.label, null)][0]?.value || iri.value;
+export function getName(store: N3Store, iri: NamedNode): string {
+	return getNames(store, iri)[0] || iri.value;
+}
+
+export function getNames(store: N3Store, iri: NamedNode) {
+	const labelIris = subPropertiesOf(store, RDFS.label);
+	return labelIris.flatMap((labelIri) => store.getObjects(iri, labelIri, null)).map((l) => l.value);
+}
+
+// This should be moved
+export function subPropertiesOf(store: N3Store, propertyIri: NamedNode): NamedNode[] {
+	const directSubProperties = store.getSubjects(
+		RDFS.subPropertyOf,
+		propertyIri,
+		null
+	) as NamedNode[];
+
+	if (!directSubProperties.length) {
+		return [propertyIri];
+	} else {
+		return [propertyIri, ...directSubProperties.flatMap((c) => subPropertiesOf(store, c))];
+	}
 }
 
 export function getDescription(store: N3Store, iri: NamedNode) {
@@ -52,7 +72,8 @@ export function getIdea(store: N3Store, iri: NamedNode): Idea {
 
 // TODO: Write test for this.
 export function getAllIdeas(store: N3Store): Idea[] {
-	return getIdeaIRIs(store).map((iri) => getIdea(store, iri));
+	const ideaIris = getIdeaIRIs(store);
+	return ideaIris.map((iri) => getIdea(store, iri));
 }
 
 export function getIrisForType(store: N3Store, type: NamedNode): NamedNode[] {

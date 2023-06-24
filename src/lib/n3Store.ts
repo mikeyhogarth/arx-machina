@@ -1,5 +1,5 @@
 import { Store, Parser, DataFactory, NamedNode } from 'n3';
-import coreOntology from './ontology';
+import { raw as coreOntology } from './ontology';
 import axios from 'axios';
 import type { DefaultGraph, Quad_Graph } from 'n3';
 import { writable } from 'svelte/store';
@@ -20,8 +20,6 @@ function createN3Store() {
 				this.importDocument(response.data, graph);
 			} catch (error) {
 				console.error(error);
-			} finally {
-				set(store);
 			}
 		},
 		importDocument(document: string, graph: Quad_Graph | DefaultGraph) {

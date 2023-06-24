@@ -3,14 +3,16 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-rdf:type rdfs:label "Type"@en .
+arx:name rdfs:subPropertyOf rdfs:label .
+
+rdf:type arx:name "Type"@en .
 
 arx:Idea a rdfs:Class;
-    rdfs:label "Idea"@en ;
+    arx:name "Idea"@en ;
     rdfs:comment "An idea for a thing, such as a creature or a location."@en .
 
-rdfs:label a rdf:Property; 
-    rdfs:label "Name"@en .
+arx:name a rdf:Property; 
+    arx:name "Name"@en .
     
 rdfs:comment a rdf:Property; 
-    rdfs:label "Description"@en .
+    arx:name "Description"@en .

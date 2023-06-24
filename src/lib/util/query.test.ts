@@ -1,32 +1,93 @@
-import { getName, getIdea, getIdeaIRIs } from './query';
+import { getName, getNames, getIdea, getIdeaIRIs, getAllIdeas } from './query';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Store, DataFactory } from 'n3';
+
 import RDF from '$lib/nodes/rdf';
 import RDFS from '$lib/nodes/rdfs';
 import ARX from '$lib/nodes/arx';
+import { store as coreOntology } from '$lib/ontology';
 
 const { namedNode, literal, quad } = DataFactory;
 
 let store: Store;
 beforeEach(() => {
-	store = new Store();
+	store = new Store(coreOntology.getQuads(null, null, null, null));
 });
 
 describe('getName', () => {
-	describe('when there is a name', () => {
-		it('gets the name', () => {
-			const iri = '#foo';
-			const label = 'Foo';
+	it('Returns one of the names', () => {
+		const iri = '#foo';
+		const label = 'Foo';
 
-			store.addQuad(namedNode(iri), RDFS.label, literal(label));
-			expect(getName(store, namedNode(iri))).toEqual(label);
-		});
+		store.addQuad(namedNode(iri), RDFS.label, literal(label));
+		store.addQuad(namedNode(iri), ARX.name, literal(label));
+
+		expect(getName(store, namedNode(iri))).toEqual(label);
 	});
+
 	describe('when there is no name', () => {
 		it('returns the iri itself', () => {
 			const iri = '#foo';
 			expect(getName(store, namedNode(iri))).toEqual(iri);
 		});
+	});
+});
+
+describe('getNames', () => {
+	describe('when there is an RDFS label', () => {
+		it('uses that for the name', () => {
+			const iri = '#foo';
+			const label = 'Foo';
+
+			store.addQuad(namedNode(iri), RDFS.label, literal(label));
+			expect(getNames(store, namedNode(iri))).toEqual([label]);
+		});
+	});
+
+	describe('when there is an ARX.name', () => {
+		it('uses that for the name', () => {
+			const iri = '#foo';
+			const label = 'Foo';
+
+			store.addQuad(namedNode(iri), ARX.name, literal(label));
+			expect(getNames(store, namedNode(iri))).toEqual([label]);
+		});
+	});
+
+	describe('when there are multiple names', () => {
+		it('returns them all', () => {
+			const iri = '#foo';
+			const label1 = 'Foo1';
+			const label2 = 'Foo2';
+			const label3 = 'Foo3';
+
+			store.addQuad(namedNode(iri), ARX.name, literal(label1));
+			store.addQuad(namedNode(iri), RDFS.label, literal(label2));
+			store.addQuad(namedNode(iri), ARX.name, literal(label3));
+
+			const names = getNames(store, namedNode(iri));
+
+			expect(names).toContainEqual(label1);
+			expect(names).toContainEqual(label2);
+			expect(names).toContainEqual(label3);
+		});
+	});
+});
+
+describe('getAllIdeas', () => {
+	it('returns all ideas from the graph', () => {
+		// Arrange
+		const idea1 = namedNode('idea 1');
+		const idea2 = namedNode('idea 2');
+		store.addQuad(idea1, RDF.type, ARX.Idea);
+		store.addQuad(idea2, RDF.type, ARX.Idea);
+
+		// Act
+		const ideas = getAllIdeas(store);
+
+		// Assert
+		expect(ideas.length).toEqual(2);
+		expect(ideas[0].name).toEqual('idea 1');
 	});
 });
 
@@ -78,6 +139,7 @@ describe('getIdeaIRIs', () => {
 		expect(ideas).toContainEqual(idea1);
 		expect(ideas).toContainEqual(idea2);
 	});
+
 	it('returns things that are direct rdfs subclasses of ARX:Idea', () => {
 		const idea1 = namedNode('idea 1');
 		const idea2 = namedNode('idea 2');

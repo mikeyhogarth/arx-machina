@@ -3,48 +3,48 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :arda a arx:Location ;
-    rdfs:label "Arda" ;
+    arx:name "Arda" ;
     rdfs:comment "The world in which all peoples of Middle-earth and of Valinor live."@en ;
     arx:locationType arx:World .
 
 :middleEarth a arx:Location ;
-    rdfs:label "Middle Earth" ;
+    arx:name "Middle Earth" ;
     rdfs:comment "A major continent of Arda"@en ;
     arx:withinLocation :arda ;
     arx:locationType arx:Continent .
 
 :theShire a arx:Location ;
-    rdfs:label "The Shire"@en ;
+    arx:name "The Shire"@en ;
     rdfs:comment "A region in Middle Earth."@en ;
     arx:withinLocation :middleEarth ;
     arx:locationType arx:Region .
 
 :hobbiton a arx:Location ;
-    rdfs:label "Hobbiton"@en ;
+    arx:name "Hobbiton"@en ;
     rdfs:comment "A town in The Shire."@en ;
     arx:withinLocation :theShire ;
     arx:locationType arx:Town .
 
 :bagEnd a arx:Location ;
-    rdfs:label "Bag End"@en ;
+    arx:name "Bag End"@en ;
     rdfs:comment "A hole in the ground."@en ;
     arx:withinLocation :hobbiton ;
     arx:locationType arx:Building .
 
 :bilbo a arx:Character ;
-    rdfs:label "Bilbo Baggins"@en ;
+    arx:name "Bilbo Baggins"@en ;
     rdfs:comment "A Hobbit of the Shire and owner of bag-end. Former owner of the One Ring." ;
     arx:home :bagEnd ;
     arx:familyOf :frodo ;
     arx:gender arx:Male .
 
 :frodo a arx:Character ;
-    rdfs:label "Frodo Baggins"@en ;
+    arx:name "Frodo Baggins"@en ;
     rdfs:comment "A Hobbit of the Shire and future bearer of the One Ring." ;
     arx:home :bagEnd ;
     arx:familyOf :bilbo ;
     arx:gender arx:Male .
 
 :cavetroll a arx:Creature ;
-    rdfs:label "Cave Troll"@en ;
+    arx:name "Cave Troll"@en ;
     rdfs:comment "A ferocious cave troll!"@en .

@@ -2,32 +2,32 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-arx:Location rdfs:subClassOf arx:Idea; rdfs:label "Location"@en .
+arx:Location rdfs:subClassOf arx:Idea; arx:name "Location"@en .
 
 # Location Types
-arx:LocationType a rdfs:Class; rdfs:label "Location Type"@en .
-arx:Mountain a arx:LocationType; rdfs:label "Mountain"@en .
-arx:Desert a arx:LocationType; rdfs:label "Desert"@en .
-arx:Region a arx:LocationType; rdfs:label "Region"@en .
-arx:City a arx:LocationType; rdfs:label "City"@en .
-arx:Town a arx:LocationType; rdfs:label "Town"@en .
-arx:Building a arx:LocationType; rdfs:label "Building"@en .
-arx:Dungeon a arx:LocationType; rdfs:label "Dungeon"@en .
-arx:Continent a arx:LocationType; rdfs:label "Continent"@en .
-arx:World a arx:LocationType; rdfs:label "World"@en .
+arx:LocationType a rdfs:Class; arx:name "Location Type"@en .
+arx:Mountain a arx:LocationType; arx:name "Mountain"@en .
+arx:Desert a arx:LocationType; arx:name "Desert"@en .
+arx:Region a arx:LocationType; arx:name "Region"@en .
+arx:City a arx:LocationType; arx:name "City"@en .
+arx:Town a arx:LocationType; arx:name "Town"@en .
+arx:Building a arx:LocationType; arx:name "Building"@en .
+arx:Dungeon a arx:LocationType; arx:name "Dungeon"@en .
+arx:Continent a arx:LocationType; arx:name "Continent"@en .
+arx:World a arx:LocationType; arx:name "World"@en .
 
 # Location Properties
 arx:locationType a rdf:Property;
-    rdfs:label  "Location Type"@en ;
+    arx:name  "Location Type"@en ;
     rdfs:domain arx:Location ;
     rdfs:range arx:LocationType .
 
 arx:withinLocation a rdf:Property;
-    rdfs:label "Located Within"@en ;
+    arx:name "Located Within"@en ;
     rdfs:domain arx:Location ;
     rdfs:range arx:Location .
 
 arx:adjacentTo a rdf:Property;
-    rdfs:label "Adjacent to"@en ;
+    arx:name "Adjacent to"@en ;
     rdfs:domain arx:Location ;
     rdfs:range arx:Location .

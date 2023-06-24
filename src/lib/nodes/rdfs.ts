@@ -7,5 +7,6 @@ const { namedNode } = DataFactory;
 export default {
 	label: namedNode(ns + 'label'),
 	comment: namedNode(ns + 'comment'),
-	subClassOf: namedNode(ns + 'subClassOf')
+	subClassOf: namedNode(ns + 'subClassOf'),
+	subPropertyOf: namedNode(ns + 'subPropertyOf')
 };

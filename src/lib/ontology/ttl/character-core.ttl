@@ -2,38 +2,38 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-arx:Character rdfs:subClassOf arx:Idea; rdfs:label "Character"@en.
+arx:Character rdfs:subClassOf arx:Idea; arx:name "Character"@en.
 
 # Gender
-arx:Gender a rdfs:Class; rdfs:label "Gender"@en . 
-arx:Male a arx:Gender; rdfs:label "Male"@en .
-arx:Female a arx:Gender; rdfs:label "Female"@en .
+arx:Gender a rdfs:Class; arx:name "Gender"@en . 
+arx:Male a arx:Gender; arx:name "Male"@en .
+arx:Female a arx:Gender; arx:name "Female"@en .
 
 arx:gender a rdf:Property ; 
-    rdfs:label "Gender"@en ;
+    arx:name "Gender"@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Gender .
 
 arx:home a rdf:Property ;
-    rdfs:label "Home"@en ;
+    arx:name "Home"@en ;
     rdfs:comment "A place this character calls home"@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
 
 arx:familyOf a rdf:Property ;
-    rdfs:label "Family"@en ;
+    arx:name "Family"@en ;
     rdfs:comment "Characters related by family."@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
 
 arx:friendOf a rdf:Property ;
-    rdfs:label "Friend"@en ;
+    arx:name "Friend"@en ;
     rdfs:comment "Characters related by friendship."@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
 
 arx:enemyOf a rdf:Property ;
-    rdfs:label "Enemy"@en ;
+    arx:name "Enemy"@en ;
     rdfs:comment "Characters are enemies."@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
