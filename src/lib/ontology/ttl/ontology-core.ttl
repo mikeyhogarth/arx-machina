@@ -4,15 +4,17 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 arx:name rdfs:subPropertyOf rdfs:label .
+arx:description rdfs:subPropertyOf rdfs:comment .
 
+arx:flavourText arx:name "Flavour Text"@en .
 rdf:type arx:name "Type"@en .
 
 arx:Idea a rdfs:Class;
     arx:name "Idea"@en ;
-    rdfs:comment "An idea for a thing, such as a creature or a location."@en .
+    arx:description "An idea for a thing, such as a creature or a location."@en .
 
 arx:name a rdf:Property; 
     arx:name "Name"@en .
     
-rdfs:comment a rdf:Property; 
+arx:description a rdf:Property; 
     arx:name "Description"@en .

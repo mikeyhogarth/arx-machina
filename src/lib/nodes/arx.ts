@@ -7,5 +7,6 @@ export default {
 	name: namedNode(ns + `name`),
 	description: namedNode(ns + `description`),
 	Idea: namedNode(ns + `Idea`),
-	Location: namedNode(ns + `Location`)
+	Location: namedNode(ns + `Location`),
+	flavourText: namedNode(ns + `flavourText`)
 };

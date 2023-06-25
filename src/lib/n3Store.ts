@@ -28,7 +28,6 @@ function createN3Store() {
 				if (quad) store.addQuad(quad.subject, quad.predicate, quad.object, graph);
 				if (!quad) {
 					set(store);
-					console.log('Store updated', store.size);
 				}
 			});
 		}
@@ -38,6 +37,7 @@ function createN3Store() {
 // Temporarily import core ontology and example package here.
 const store = createN3Store();
 store.importDocument(coreOntology, namedNode('#ontology'));
-store.fetchDocument('http://localhost:5173/example.ttl', defaultGraph());
+store.fetchDocument('http://localhost:5173/example1.ttl', defaultGraph());
+store.fetchDocument('http://localhost:5173/example2.ttl', defaultGraph());
 
 export default store;

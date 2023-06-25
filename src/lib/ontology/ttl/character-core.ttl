@@ -16,24 +16,24 @@ arx:gender a rdf:Property ;
 
 arx:home a rdf:Property ;
     arx:name "Home"@en ;
-    rdfs:comment "A place this character calls home"@en ;
+    arx:description "A place this character calls home"@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
 
 arx:familyOf a rdf:Property ;
     arx:name "Family"@en ;
-    rdfs:comment "Characters related by family."@en ;
+    arx:description "Characters related by family."@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
 
 arx:friendOf a rdf:Property ;
     arx:name "Friend"@en ;
-    rdfs:comment "Characters related by friendship."@en ;
+    arx:description "Characters related by friendship."@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .
 
 arx:enemyOf a rdf:Property ;
     arx:name "Enemy"@en ;
-    rdfs:comment "Characters are enemies."@en ;
+    arx:description "Characters are enemies."@en ;
     rdfs:domain arx:Character ; 
     rdfs:range arx:Location .

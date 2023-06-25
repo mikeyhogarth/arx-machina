@@ -10,7 +10,7 @@
 */
 
 import type { Idea } from '$lib/types';
-
+import { subPropertiesOf } from './rdfUtils';
 import type { Store as N3Store, NamedNode } from 'n3';
 import RDF from '$lib/nodes/rdf';
 import RDFS from '$lib/nodes/rdfs';
@@ -20,44 +20,30 @@ export function getName(store: N3Store, iri: NamedNode): string {
 	return getNames(store, iri)[0] || iri.value;
 }
 
-export function getNames(store: N3Store, iri: NamedNode) {
-	const labelIris = subPropertiesOf(store, RDFS.label);
-	return labelIris.flatMap((labelIri) => store.getObjects(iri, labelIri, null)).map((l) => l.value);
+export function getNames(store: N3Store, iri: NamedNode): string[] {
+	return getValuesForProperties(store, iri, subPropertiesOf(store, RDFS.label));
 }
 
-// This should be moved
-export function subPropertiesOf(store: N3Store, propertyIri: NamedNode): NamedNode[] {
-	const directSubProperties = store.getSubjects(
-		RDFS.subPropertyOf,
-		propertyIri,
-		null
-	) as NamedNode[];
-
-	if (!directSubProperties.length) {
-		return [propertyIri];
-	} else {
-		return [propertyIri, ...directSubProperties.flatMap((c) => subPropertiesOf(store, c))];
-	}
+export function getDescriptions(store: N3Store, iri: NamedNode): string[] {
+	return getValuesForProperties(store, iri, subPropertiesOf(store, RDFS.comment));
 }
 
-export function getDescription(store: N3Store, iri: NamedNode) {
-	return [...store.getObjects(iri, RDFS.comment, null)][0]?.value || undefined;
+export function getDescription(store: N3Store, iri: NamedNode): string {
+	return getDescriptions(store, iri)[0];
 }
 
 export function getTypes(store: N3Store, iri: NamedNode): NamedNode[] {
 	return store.getObjects(iri, RDF.type, null) as NamedNode[];
 }
 
-// Return properties that are not name, description or type.
-export function otherProperties(store: N3Store, iri: NamedNode) {
-	return store
-		.getQuads(iri, null, null, null)
-		.filter(
-			(q) =>
-				!q.predicate.equals(RDF.type) &&
-				!q.predicate.equals(RDFS.comment) &&
-				!q.predicate.equals(RDFS.label)
-		);
+// Extract to generic place
+export function getValuesForProperties(store: N3Store, iri: NamedNode, properties: NamedNode[]) {
+	return properties.flatMap((p) => store.getObjects(iri, p, null)).map((o) => o.value);
+}
+
+// Extract to generic place
+export function getValueForProperties(store: N3Store, iri: NamedNode, properties: NamedNode[]) {
+	return getValuesForProperties(store, iri, properties)[0];
 }
 
 export function getIdea(store: N3Store, iri: NamedNode): Idea {
@@ -65,9 +51,26 @@ export function getIdea(store: N3Store, iri: NamedNode): Idea {
 		iri,
 		name: getName(store, iri),
 		description: getDescription(store, iri),
+		flavourText: getValueForProperties(store, iri, [ARX.flavourText]),
 		types: getTypes(store, iri),
 		otherProperties: otherProperties(store, iri)
 	};
+}
+
+// Return properties that are not name, description or type.
+export function otherProperties(store: N3Store, iri: NamedNode) {
+	const keyProps = [
+		RDF.type,
+		RDFS.subClassOf,
+		RDFS.subPropertyOf,
+		ARX.flavourText,
+		...subPropertiesOf(store, RDFS.comment),
+		...subPropertiesOf(store, RDFS.label)
+	];
+
+	return store
+		.getQuads(iri, null, null, null)
+		.filter((q) => !keyProps.map((p) => p.value).includes(q.predicate.value));
 }
 
 // TODO: Write test for this.

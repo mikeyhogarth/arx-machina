@@ -1,4 +1,12 @@
-import { getName, getNames, getIdea, getIdeaIRIs, getAllIdeas } from './query';
+import {
+	getName,
+	getDescription,
+	getDescriptions,
+	getNames,
+	getIdea,
+	getIdeaIRIs,
+	getAllIdeas
+} from './query';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Store, DataFactory } from 'n3';
 
@@ -74,6 +82,56 @@ describe('getNames', () => {
 	});
 });
 
+describe('getDescription', () => {
+	describe('when there is an ARX description', () => {
+		it('returns that description', () => {
+			// Arrange
+			const iri = '#foo';
+			const description = 'Foo';
+
+			// Act
+			store.addQuad(namedNode(iri), ARX.description, literal(description));
+
+			// Assert
+			expect(getDescription(store, namedNode(iri))).toEqual(description);
+		});
+	});
+
+	describe('when there is no description', () => {
+		it('returns falsey', () => {
+			const iri = '#foo';
+			expect(getDescription(store, namedNode(iri))).toBeFalsy();
+		});
+	});
+});
+
+describe('getDescriptions', () => {
+	describe('returns all descriptions', () => {
+		it('returns that description', () => {
+			// Arrange
+			const iri = '#foo';
+			const description1 = 'Foo';
+			const description2 = 'Bar';
+
+			// Act
+			store.addQuad(namedNode(iri), ARX.description, literal(description1));
+			store.addQuad(namedNode(iri), RDFS.comment, literal(description2));
+
+			// Assert
+			const descriptions = getDescriptions(store, namedNode(iri));
+			expect(descriptions).toContainEqual(description1);
+			expect(descriptions).toContainEqual(description2);
+		});
+	});
+
+	describe('when there is no description', () => {
+		it('returns falsey', () => {
+			const iri = '#foo';
+			expect(getDescription(store, namedNode(iri))).toBeFalsy();
+		});
+	});
+});
+
 describe('getAllIdeas', () => {
 	it('returns all ideas from the graph', () => {
 		// Arrange
@@ -99,13 +157,15 @@ describe('getIdea', () => {
 		const description = 'Idea Description';
 		const type1 = 'Idea type 1';
 		const type2 = 'Idea type 2';
+		const flavourText = 'Flavour Text';
 		const property1 = quad(namedNode(iri), namedNode('Property 1'), namedNode('Property Value 1'));
 		const property2 = quad(namedNode(iri), namedNode('Property 2'), namedNode('Property Value 2'));
 
-		store.addQuad(namedNode(iri), RDFS.label, literal(name));
-		store.addQuad(namedNode(iri), RDFS.comment, literal(description));
+		store.addQuad(namedNode(iri), ARX.name, literal(name));
+		store.addQuad(namedNode(iri), ARX.description, literal(description));
 		store.addQuad(namedNode(iri), RDF.type, namedNode(type1));
 		store.addQuad(namedNode(iri), RDF.type, namedNode(type2));
+		store.addQuad(namedNode(iri), ARX.flavourText, literal(flavourText));
 		store.addQuad(property1);
 		store.addQuad(property2);
 
@@ -116,6 +176,7 @@ describe('getIdea', () => {
 		expect(idea.iri).toEqual(namedNode(iri));
 		expect(idea.name).toEqual(name);
 		expect(idea.description).toEqual(description);
+		expect(idea.flavourText).toEqual('Flavour Text');
 		expect(idea.types.length).toEqual(2);
 		expect(idea.types).toContainEqual(namedNode(type1));
 		expect(idea.types).toContainEqual(namedNode(type2));
