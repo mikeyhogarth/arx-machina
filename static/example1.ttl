@@ -1,6 +1,9 @@
 @prefix : <#> .
 @prefix arx: <http://www.arx-machina.com/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix fr: <http://www.arx-machina.com/forgotten-realms/> .
+
+# This is an example of using arx to describe some characters and locations
+# within the Lord of the Rings setting.
 
 :arda a arx:Location ;
     arx:name "Arda" ;
@@ -47,4 +50,10 @@
 
 :cavetroll a arx:Creature ;
     arx:name "Cave Troll"@en ;
-    arx:description "A ferocious cave troll!"@en .
+    arx:description "A ferocious cave troll!"@en ;
+    fr:HP 103 ;
+    fr:Str 8 ;
+    fr:Dex 3 ;
+    fr:Con 10 ;
+    fr:Wis 3 ;
+    fr:Int 2 .

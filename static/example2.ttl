@@ -2,8 +2,12 @@
 @prefix arx: <http://www.arx-machina.com/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-arx:Trap rdfs:subClassOf arx:Idea; arx:name "Trap"@en .
+# In this example, the author is introducing a whole new "idea type".
+arx:Trap rdfs:subClassOf arx:Idea; 
+    arx:name "Trap"@en; 
+    arx:description "A devious device or event that is designed to hinder players"@en .
 
+# They then include an example of their new idea type.
 :bearTrap a arx:Trap ;
     arx:name "The Bear Trap" ;
     arx:description "A bear falls on you if you try to disarm this trap."@en ;

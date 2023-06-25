@@ -1,0 +1,14 @@
+# This is an example of representing some forgotten realms
+# properties in arx.
+
+@prefix : <#> .
+@prefix arx: <http://www.arx-machina.com/> .
+@prefix fr: <http://www.arx-machina.com/forgotten-realms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+fr:HP a rdf:Property; arx:name "Hit Points (HP)" .
+fr:Str a rdf:Property; arx:name "Strength" .
+fr:Dex a rdf:Property; arx:name "Dexterity" .
+fr:Con a rdf:Property; arx:name "Constitution" .
+fr:Wis a rdf:Property; arx:name "Wisdom" .
+fr:Int a rdf:Property; arx:name "Intelligence" .

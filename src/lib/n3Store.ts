@@ -39,5 +39,6 @@ const store = createN3Store();
 store.importDocument(coreOntology, namedNode('#ontology'));
 store.fetchDocument('http://localhost:5173/example1.ttl', defaultGraph());
 store.fetchDocument('http://localhost:5173/example2.ttl', defaultGraph());
+store.fetchDocument('http://localhost:5173/example3.ttl', defaultGraph());
 
 export default store;
